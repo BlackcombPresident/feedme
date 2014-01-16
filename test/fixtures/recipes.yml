@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  directions: MyText
+  protein: 1
+  fat: 1
+  carbs: 1
+  cost: 1
+  criteria: MyText
+  prep_time: 1
+  cook_time: 1
+  calories: 1
+
+two:
+  title: MyString
+  directions: MyText
+  protein: 1
+  fat: 1
+  carbs: 1
+  cost: 1
+  criteria: MyText
+  prep_time: 1
+  cook_time: 1
+  calories: 1

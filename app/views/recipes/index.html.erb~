@@ -1,0 +1,19 @@
+<h1>All Recipes</h1>
+
+<% recipes = Recipe.all %>
+
+<table>
+	<% recipes.each do |recipe| %>
+		<tr>
+			<td><%= link_to recipe.title, recipe %></td>
+		</tr>
+	<% end %>
+</table>
+
+<% if recipes.empty? %>
+	<em>No recipes found</em>
+<% end %>
+
+<br/>
+<%= link_to "Add a recipe!", '#', class: "btn btn-large btn-primary" %>
+

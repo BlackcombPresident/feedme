@@ -1,0 +1,45 @@
+<h1> New Recipe </h1>
+
+<%= nested_form_for @recipe do |f| %>
+	<% if @recipe.errors.any? %>
+  	<div id="error_explanation">
+    	<h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+    	<ul>
+		<% @recipe.errors.full_messages.each do |msg| %>
+      	<li><%= msg %></li>
+    	<% end %>
+    	</ul>
+  	</div>
+  	<% end %>
+
+	<h3>Title</h3>
+	<%= f.text_field :title, size: 100 %>
+
+	<h3>Directions</h3>
+	<%= f.text_area :directions, cols: 100, rows: 10 %>
+
+	<h3>Ingredients</h3>
+  	<% f.fields_for :ingredients do |ing| %>
+   	<p>
+      	<%= ing.label :name %>
+			<%= ing.text_field :name, :size => 50 %>
+			<%= ing.text_field :amount, :size => 4 %>
+			<%= select_tag(:measurement, options_for_select([['',0],['tsp',1],['tbsp',2],['cups',3],['oz',4],['lbs',5]])) %>
+			<%= ing.link_to_remove "Remove" %>
+    	</p>
+	<% end -%>
+	<p><%= f.link_to_add 'Add ingredient', :ingredients, class: "btn btn-primary btn-default" %></p>
+
+	<p>
+	<%= f.label "Protein (g)"%> <%= f.text_field :protein, :size => 3, :onblur => "calculateCalories();" %> 
+		<%= f.label "Fat (g)"%> <%= f.text_field :fat, :size => 3, :onblur => "calculateCalories();" %>
+		<%= f.label "Carbs (g)" %> <%= f.text_field :carbs, :size => 3, :onblur => 'calculateCalories();' %> 
+		<%= f.label :calories %><%= f.text_field :calories, :size => 3, :readonly => true %>
+	</p>
+	<p> <%= f.label :cost %> <%= select_tag(:cost, options_for_select([['$',1],['$$',2],['$$$',3]]))%> </p>
+	<p> <%= f.label "Prep (minutes)" %> <%= f.text_field :prep_time, :size => 4 %> </p>
+	<p> <%= f.label "Cook time (minutes)"  %> <%= f.text_field :cook_time, :size => 4 %> </p>
+
+	<p><button type="submit" class="btn btn-primary btn-lg">Create recipe!</button>
+	</p>
+<% end %>

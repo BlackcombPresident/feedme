@@ -1,0 +1,11 @@
+<h1><%= @recipe.title %></h1>
+<p> Directions <br>
+<%= @recipe.directions %>
+</p>
+<% @ingredients.all.each do |i| %>
+		<%= i.name %></br>
+<% end %>
+
+<p> Calories: <%= @recipe.calories %> Protein: <%= @recipe.protein %>g Fat: <%= @recipe.fat %>g Carbs: <%= @recipe.carbs %>g </p> 
+<p> Cost: <%= @recipe.cost %> Prep: <%= @recipe.prep_time %> Cook: <%= @recipe.cook_time %> </p>
+
