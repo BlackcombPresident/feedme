@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131225044830) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "ingredients", force: true do |t|
     t.string   "name"
     t.decimal  "amount"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20131225044830) do
     t.datetime "updated_at"
   end
 
-  add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id", using: :btree
 
   create_table "recipes", force: true do |t|
     t.string   "title"

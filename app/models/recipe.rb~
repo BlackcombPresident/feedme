@@ -14,13 +14,13 @@ class Recipe < ActiveRecord::Base
 		:presence => true
 
 	validate do
-		check_for_ingredients
+	#	check_for_ingredients
 	end
 
 	private
 	def check_for_ingredients
 		unless ingredients.count >= 1
-			errors.add(:ingredients, 'Recipes must contain at least one ingredient')
+			errors.add(:base, 'Recipes must contain at least one ingredient')
 		end
 	end
 end

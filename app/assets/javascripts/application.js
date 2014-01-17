@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery_nested_form
-//= require recipes
 //= require_tree .

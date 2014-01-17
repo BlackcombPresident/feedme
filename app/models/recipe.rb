@@ -14,7 +14,8 @@ class Recipe < ActiveRecord::Base
 		:presence => true
 
 	validate do
-		check_for_ingredients
+		#  This doesn't work yet, ingredients looks empty at time of validation but it does work eventually
+		#	check_for_ingredients
 	end
 
 	private
