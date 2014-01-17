@@ -29,11 +29,19 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# For nested ingredient forms
 gem 'nested_form'
 
+# For sassy css
 gem 'bootstrap-sass'
 
+# Heroku uses Postgres instead of sqlite
 gem 'pg'
+
+# For pushing assets
+gem 'rails_12factor'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
