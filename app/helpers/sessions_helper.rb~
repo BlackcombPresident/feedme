@@ -1,0 +1,10 @@
+module SessionsHelper
+	def user_name_helper
+		if session[:omniauth] 
+			@authorization.user.name
+		else
+			"Login with Facebook"
+		end	
+	end
+
+end

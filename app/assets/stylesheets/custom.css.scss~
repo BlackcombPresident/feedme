@@ -44,7 +44,7 @@ h1 {
 h2 {
   font-size: 1.5em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-weight: normal;
   color: $gray-light;
 }
@@ -71,6 +71,10 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+#login {
+	margin-top: 9px
 }
 
 /* footer */

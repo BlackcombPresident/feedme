@@ -21,24 +21,35 @@
 	<h3>Ingredients</h3>
   	<% f.fields_for :ingredients do |ing| %>
    	<p>
-      	<%= ing.label :name %>
-			<%= ing.text_field :name, :size => 50 %>
-			<%= ing.text_field :amount, :size => 4 %>
-			<%= select_tag(:measurement, options_for_select([['',0],['tsp',1],['tbsp',2],['cups',3],['oz',4],['lbs',5]])) %>
+			<%= ing.text_field :name, :placeholder => "e.g. broccoli", :size => 50 %>
+			<%= ing.number_field :amount, :placeholder => "e.g. 2.5", :size => 4, :step => 'any' %>
+			<%= ing.select :measurement, options_for_select(@measurements) %>
 			<%= ing.link_to_remove "Remove" %>
     	</p>
 	<% end -%>
 	<p><%= f.link_to_add 'Add ingredient', :ingredients, class: "btn btn-primary btn-default" %></p>
 
+	<h3>Nutritional Info</h3>
 	<p>
-	<%= f.label "Protein (g)"%> <%= f.text_field :protein, :size => 3, :onblur => "calculateCalories();" %> 
-		<%= f.label "Fat (g)"%> <%= f.text_field :fat, :size => 3, :onblur => "calculateCalories();" %>
-		<%= f.label "Carbs (g)" %> <%= f.text_field :carbs, :size => 3, :onblur => 'calculateCalories();' %> 
-		<%= f.label :calories %><%= f.text_field :calories, :size => 3, :readonly => true %>
+		<%= f.label "Protein (g)"%> <%= f.number_field :protein, :style => "text-align: center", :size => 3, :step => 'any', :onblur => "calculateCalories();" %> 
+		<%= f.label "Fat (g)"%> <%= f.number_field :fat, :style => "text-align: center", :size => 3, :step => 'any',  :onblur => "calculateCalories();" %>
+		<%= f.label "Carbs (g)" %> <%= f.number_field :carbs, :style => "text-align: center", :size => 3, :step => 'any', :onblur => 'calculateCalories();' %> 
+		<%= f.label :calories %><%= f.text_field :calories, :style => "text-align: center", :size => 3, :readonly => true %>
 	</p>
-	<p> <%= f.label :cost %> <%= select_tag(:cost, options_for_select([['$',1],['$$',2],['$$$',3]]))%> </p>
-	<p> <%= f.label "Prep (minutes)" %> <%= f.text_field :prep_time, :size => 4 %> </p>
-	<p> <%= f.label "Cook time (minutes)"  %> <%= f.text_field :cook_time, :size => 4 %> </p>
+
+	<h3>Recipe Info</h3>
+	<p> <%= f.label :cost %> <%= f.select :cost, {'$' => 1, '$$' => 2, '$$$' => 3 }%> </p>
+	<p> <%= f.label "Prep (minutes)" %> <%= f.number_field :prep_time, :size => 4 %> </p>
+	<p> <%= f.label "Cook time (minutes)"  %> <%= f.number_field :cook_time, :size => 4 %> </p>
+	<p> <%= f.check_box :criteria (we want to add this here)
+	<ul>
+	 	<%= @tools_criteria.each do |cc| %>
+			<li><%= cc %></li>
+		<% end %>
+	</ul>
+
+	<h3>Does this fall under any of the following diet plans?</h3>
+
 
 	<p><button type="submit" class="btn btn-primary btn-lg">Create recipe!</button>
 	</p>

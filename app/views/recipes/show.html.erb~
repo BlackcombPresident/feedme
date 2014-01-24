@@ -1,11 +1,13 @@
 <h1><%= @recipe.title %></h1>
-<p> Directions <br>
-<%= @recipe.directions %>
-</p>
-<% @ingredients.all.each do |i| %>
-		<%= i.name %></br>
-<% end %>
+<h2> Directions </h2>
+<%= simpleformat(@recipe.directions) %>
 
+<h2> Ingredients </h2>
+<ul>
+<% @ingredients.all.each do |i| %>
+	<li><%= "#{i.amount} #{i.measurement} #{i.name}" %>
+<% end %>
+</ul>
 <p> Calories: <%= @recipe.calories %> Protein: <%= @recipe.protein %>g Fat: <%= @recipe.fat %>g Carbs: <%= @recipe.carbs %>g </p> 
 <p> Cost: <%= @recipe.cost %> Prep: <%= @recipe.prep_time %> Cook: <%= @recipe.cook_time %> </p>
 

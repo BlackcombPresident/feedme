@@ -1,4 +1,10 @@
 class RecipesController < ApplicationController
+ 	before_filter :get_measurements, :only => [:new, :show]
+ 	before_filter :get_diet_criteria, :only => [:new, :show]
+ 	before_filter :get_cooking_criteria, :only => [:new, :show]
+ 	before_filter :get_costs, :only => [:new, :show]
+ 	before_filter :get_tools_criteria, :only => [:new, :show]
+	
 	def show
 		@recipe = Recipe.find(params[:id])
 		@ingredients = @recipe.ingredients
@@ -11,6 +17,7 @@ class RecipesController < ApplicationController
 	def new
 		@recipe = Recipe.new
     	@recipe.ingredients.build # build ingredient attributes, nothing new here
+		
 	end
 
 	def create
@@ -19,6 +26,8 @@ class RecipesController < ApplicationController
 		if @recipe.save
 			flash[:notice] = "Successfully created recipe."
 			redirect_to @recipe 
+		else
+			render 'new'
 		end
 	end
 
@@ -40,5 +49,23 @@ class RecipesController < ApplicationController
 		def recipe_params
 			params.require(:recipe).permit(:title, :directions, :protein, :fat, :carbs, :calories, :cost, :prep_time, :cook_time, ingredients_attributes: [:id, :name, :recipe_id, :amount, :measurement, :_destroy])
 		end
+		
+		def get_measurements
+			@measurements = ["tsp", "tbsp", "cups", "g", "oz", "mL", "L" ]
+		end
 
+		def get_diet_criteria
+			@diet_criteria = ["Vegetarian", "Vegan", "Gluten free", "Paleo", "Low carb", "Mediterranean"]
+		end
+
+		def get_tools_criteria
+			@tools_criteria = ["Grill only", "Crockpot only"]
+
+		def get_cooking_criteria
+			@cooking_criteria = ["Less than 30 minutes", "Less than 60 minutes", "Budget"]
+		end
+
+		def get_costs
+			@costs = ["$", "$$", "$$$"]
+		end
 end

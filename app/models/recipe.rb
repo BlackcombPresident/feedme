@@ -24,5 +24,6 @@ class Recipe < ActiveRecord::Base
 			errors.add(:base, 'Recipes must contain at least one ingredient')
 		end
 	end
+
 end
 

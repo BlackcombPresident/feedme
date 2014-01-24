@@ -41,6 +41,9 @@ gem 'pg'
 # For pushing assets
 gem 'rails_12factor'
 
+gem 'omniauth'
+
+gem 'omniauth-facebook', '1.4.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

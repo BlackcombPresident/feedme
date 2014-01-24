@@ -1,5 +1,9 @@
 Feedme::Application.routes.draw do
 	
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/failure"
+  get "sessions/destroy"
   root 'static_pages#home'
   
   match '/help', to: 'static_pages#help', via: 'get'
@@ -9,6 +13,12 @@ Feedme::Application.routes.draw do
 	resources :recipes do
 		resources :ingredients
 	end
+
+	get '/login', to: 'sessions#new', :as => :login
+	match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+	match '/auth/failure', to: 'sessions#failure', via: [:get, :post]
+
+	get '/logout', to: 'sessions#destroy'
 
   #get "recipes/index"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -3,9 +3,10 @@
     <div class="container">
       <%= link_to "FeedMe", root_path, id: "logo" %>
       <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Help", help_path %></li>
-        </ul>
+			<div class="nav pull-right">
+				<%= link_to user_name_helper, "/auth/facebook", class: "btn btn-primary btn-default", id: "login" %>
+			 <%= link_to "Help", help_path %>
+        </div>
       </nav>
     </div>
   </div>
